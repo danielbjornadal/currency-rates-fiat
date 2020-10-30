@@ -1,0 +1,35 @@
+{
+  "name": "currency-rates-fiat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "start": "npm run serve",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w"
+  },
+  "author": "Daniel Bjørnådal",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/uuid": "^8.3.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dateformat": "^3.0.3",
+    "express": "^4.16.4",
+    "mariadb": "^2.5.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "request-promise-core": "^1.1.4",
+    "sequelize": "^6.3.5",
+    "sprintf-js": "^1.1.1",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
