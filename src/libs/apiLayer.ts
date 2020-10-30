@@ -18,8 +18,7 @@ export class ApiLayer {
         return new Promise((resolve, reject) => {
 
             if(!opts.path)
-                reject('Missing path')
-            
+                reject('Missing path')            
 
             if(!opts.params.hasOwnProperty("access_key"))
                 opts.params['access_key'] = this._accessKey;
