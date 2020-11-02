@@ -10,7 +10,7 @@ export class ApiLayer {
     private _accessKey: any;
 
 	constructor(access_key: String = "") {
-        this._urlApi = "https://api.currencylayer.com/api"
+        this._urlApi = "http://api.currencylayer.com/api"
         this._accessKey = access_key;
 	}
 
