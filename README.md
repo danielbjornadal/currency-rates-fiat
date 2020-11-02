@@ -11,7 +11,7 @@ Database dialect = mariadb
 
 DATABASE || 'currency'
 DATABASE_HOST || '127.0.0.1:8000',
-DATABASE_PORT || '80',
+DATABASE_PORT || '3306',
 DATABASE_USERNAME || 'root',
 DATABASE_PASSWORD || 'password',
 DATABASE_LOGGING || false

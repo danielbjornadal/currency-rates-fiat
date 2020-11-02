@@ -8,7 +8,7 @@ export interface CurrenciesModel {
     Value?: string
 }
 
-export const Currency = sequelize.define("currency", {
+export const FiatLive = sequelize.define("fiat_live", {
 	Name: { 
 		type: dataTypes.STRING 
 	},
@@ -34,6 +34,6 @@ export const Sync = sequelize.sync({force: false}).then((err) => {
      //   console.log(err)
 })
 
-export const Tables = sequelize.getQueryInterface().describeTable('currency');
+export const Tables = sequelize.getQueryInterface().describeTable('fiat_live');
 
 export const Op = Sequelize.Op;

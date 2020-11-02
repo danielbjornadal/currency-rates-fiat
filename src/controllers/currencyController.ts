@@ -76,7 +76,7 @@ export class CurrencyController {
                             Value: (currencyValues.quotes.hasOwnProperty(`USD${currency}`) ? currencyValues.quotes[`USD${currency}`] : undefined)
                         })
                     }
-                    return currencyModel.Currency.bulkCreate(currencies, { updateOnDuplicate: ["Value", "Name"] })
+                    return currencyModel.FiatLive.bulkCreate(currencies, { updateOnDuplicate: ["Value", "Name"] })
                 })
                 .then((r: any) => {
                     resolve(r.length);
