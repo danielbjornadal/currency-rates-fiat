@@ -2,11 +2,7 @@ import * as request from "request-promise";
 
 export class ApiLayer {
 
-    private _protocol: any;
     private _urlApi: any;
-    private _protoc_urlApiol: any;
-    private _urlSecure: any;
-    private _strictSSL: any;
     private _accessKey: any;
 
 	constructor(access_key: String = "") {
@@ -64,11 +60,11 @@ export class ApiLayer {
         return str.replace(/[^a-zA-Z0-9\-]/g, '')
     }
 
-    /** getCurrencyList
-     * @name getCurrencyList
+    /** getFiatList
+     * @name getFiatList
      * @function
      */
-    getCurrencyList(params = { format: 1 }) {
+    getFiatList(params = { format: 1 }) {
         let opts = { 
             method: 'GET',
             path: `/list`,
@@ -77,11 +73,11 @@ export class ApiLayer {
         return this.callApi(opts)
     }
 
-    /** getCurrencyValues
-     * @name getCurrencyValues
+    /** getFiatValues
+     * @name getFiatValues
      * @function
      */
-    getCurrencyValues(params = { format: 1 }) {
+    getFiatValues(params = { format: 1 }) {
         let opts = { 
             method: 'GET',
             path: `/live`,

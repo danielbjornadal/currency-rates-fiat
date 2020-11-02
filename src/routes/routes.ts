@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { CurrencyController } from "../controllers/currencyController";
+import { FiatController } from "../controllers/fiatController";
 
 let path = process.env.ROUTERPATH || "";
 
 export class currencyRouter { 
-    public currencyController: CurrencyController = new CurrencyController()  
+    public fiatController: FiatController = new FiatController()  
     public routes(app): void {   
         // TOTO: Add currencies as metrics for Prometheus
         app.route(`${path}/metrics`);

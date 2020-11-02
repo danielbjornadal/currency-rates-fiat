@@ -2,10 +2,10 @@ import { ApiLayer } from "../libs/apiLayer";
 import * as currencyModel from '../models/currencyModel';
 import Log from '../libs/log'
 
-let system = "currencyController";
+let system = "FiatController";
 const ApiLayerKey = process.env.APILAYER_KEY || "";
 
-export class CurrencyController {
+export class FiatController {
 
     // private log: Log;
     public apiLayer: ApiLayer;
@@ -53,27 +53,27 @@ export class CurrencyController {
         return new Promise((resolve, reject) => {
 
             let currencies = []
-            let currencyPromises = [
-                this.apiLayer.getCurrencyList(),
-                this.apiLayer.getCurrencyValues()
+            let promises = [
+                this.apiLayer.getFiatList(),
+                this.apiLayer.getFiatValues()
             ]
 
-            Promise.all(currencyPromises)
+            Promise.all(promises)
                 .then((r: any) => {
-                    let currencyList = r[0];
-                    let currencyValues = r[1];
+                    let fiatList = r[0];
+                    let fiatValues = r[1];
 
-                    if(!currencyList.success && currencyList.error && currencyList.error.info)
-                        reject({ message: `Could not get Currency List. ${currencyList.error.info}`, error: currencyList.error.info });
+                    if(!fiatList.success && fiatList.error && fiatList.error.info)
+                        reject({ message: `Could not get Currency List. ${fiatList.error.info}`, error: fiatList.error.info });
 
-                    if(!currencyValues.success && currencyValues.error && currencyValues.error.info)
-                        reject({ message: `Could not get Currency Values. ${currencyValues.error.info}`, error: currencyValues.error.info });
+                    if(!fiatValues.success && fiatValues.error && fiatValues.error.info)
+                        reject({ message: `Could not get Currency Values. ${fiatValues.error.info}`, error: fiatValues.error.info });
                     
-                    for(let currency in currencyList.currencies) {
+                    for(let currency in fiatList.currencies) {
                         currencies.push({
-                            Name: String(currencyList.currencies[currency]),
+                            Name: String(fiatList.currencies[currency]),
                             NameShort: currency,
-                            Value: (currencyValues.quotes.hasOwnProperty(`USD${currency}`) ? currencyValues.quotes[`USD${currency}`] : undefined)
+                            Value: (fiatValues.quotes.hasOwnProperty(`USD${currency}`) ? fiatValues.quotes[`USD${currency}`] : undefined)
                         })
                     }
                     return currencyModel.FiatLive.bulkCreate(currencies, { updateOnDuplicate: ["Value", "Name"] })
@@ -83,7 +83,7 @@ export class CurrencyController {
                 })
                 .catch(err => {
                     console.log(err);
-                    reject({ message: `Could not update currencies`, error: err });
+                    reject({ message: `Could not update fiat currency`, error: err });
                 })
         
         })
